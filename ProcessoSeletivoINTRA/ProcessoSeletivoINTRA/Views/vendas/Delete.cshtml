@@ -1,0 +1,56 @@
+﻿@model ProcessoSeletivoINTRA.Models.venda
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>venda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Valor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            Data da Venda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_venda)
+        </dd>
+
+        <dt>
+            Quantidade
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantidade)
+        </dd>
+
+        <dt>
+            Produto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto1.nome)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

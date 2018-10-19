@@ -1,0 +1,58 @@
+﻿@model ProcessoSeletivoINTRA.Models.produto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Produto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nome
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            Descrição
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            Estoque
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estoque)
+        </dd>
+
+        <dt>
+            Data de Cadastro
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_cadastro)
+        </dd>
+
+        <dt>
+            Preço
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.preco)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_produto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="INDRA_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="produto">
+    <Key>
+      <PropertyRef Name="id_produto" />
+    </Key>
+    <Property Name="id_produto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="descricao" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="estoque" Type="int" Nullable="false" />
+    <Property Name="data_cadastro" Type="date" Nullable="false" />
+    <Property Name="preco" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="venda">
+    <Key>
+      <PropertyRef Name="id_venda" />
+    </Key>
+    <Property Name="id_venda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="produto" Type="int" Nullable="false" />
+    <Property Name="valor" Type="real" Nullable="false" />
+    <Property Name="data_venda" Type="date" Nullable="false" />
+    <Property Name="quantidade" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_venda_produto">
+    <End Role="produto" Type="Self.produto" Multiplicity="1" />
+    <End Role="venda" Type="Self.venda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id_produto" />
+      </Principal>
+      <Dependent Role="venda">
+        <PropertyRef Name="produto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="INDRA_BDModelStoreContainer">
+    <EntitySet Name="produto" EntityType="Self.produto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venda" EntityType="Self.venda" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_venda_produto" Association="Self.FK_venda_produto">
+      <End Role="produto" EntitySet="produto" />
+      <End Role="venda" EntitySet="venda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
